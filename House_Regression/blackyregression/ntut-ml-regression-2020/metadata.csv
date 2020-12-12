@@ -1,0 +1,23 @@
+id,a notation for a house,Numeric
+year,date house was sold,String
+month,date house was sold,String
+day,date house was sold,String
+price,Price is prediction target,Numeric
+bedrooms,Number of Bedrooms/House,Numeric
+bathrooms,Number of bathrooms/bedrooms,Numeric
+sqft_living,square footage of the home,Numeric
+sqft_lot,square footage of the lot,Numeric
+floors,Total floors (levels) in house,Numeric
+waterfront,House which has a view to a waterfront,Numeric
+view,Has been viewed,Numeric
+condition,How good the condition is ( Overall ),Numeric
+grade,overall grade given to the housing unit, Numeric
+sqft_above,square footage of house apart from basement,Numeric
+sqft_basement,square footage of the basement,Numeric
+yr_built,Built Year,Numeric
+yr_renovated,Year when house was renovated,Numeric
+zipcode,zip,Numeric
+lat,Latitude coordinate,Numeric
+long,Longitude coordinate,Numeric
+sqft_living15,Living room area,Numeric
+sqft_lot15,lotSize area,Numeric
