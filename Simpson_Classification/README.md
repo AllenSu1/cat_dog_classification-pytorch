@@ -9,7 +9,7 @@
 1. ##### 友情贊助dataset_partition @[Chen-Yen Chang BlackyYen](https://github.com/BlackyYen)
 深度學習模型的建立和訓練，選擇框架與進行資料預處理，設定模型訓練前須選擇深度學習框架，此分類採用的第三方框架是Pytorch之核心庫支援，為跨平台的高級神經網路API深度神經網路，且非獨立的機器學習框架提供了更進階、更直觀的抽象集。此專案採用監督式學習，需要對訓練資料進行標記，為了確保訓練時模營不會產生過度擬合的情況，需要海量的資料，進行資料預處理，透過Data augmentation的資料擴增方法，藉由資料增強技術將20類人物各收集3000張圖像，總計60000張的資料集，其中訓練集、驗證集、測試集各占資料集的70%、15%、15%。
 ##	模型訓練流程圖
-![深度學習模型訓練流程圖](hhttps://github.com/AllenSu1/ML/blob/main/Simpson_Classification/FlowChart.jpg)
+![深度學習模型訓練流程圖](https://github.com/AllenSu1/ML/blob/main/Simpson_Classification/FlowChart.jpg)
 訓練模型使用自己所設計之cnn、ResNet101與ResNet151模型，所設計之cnn使用兩層convolution與兩層Maxpooling，並以ReLU為激勵函數，在下loss圖與混淆矩陣中可發現使用自己所設計之cnn在分類效果上不是很理想，故使用ResNet模型進行分類。
 
 ![cnn訓練與驗證loss圖](https://github.com/AllenSu1/ML/blob/main/Simpson_Classification/image/cnn__StepLR_5_cnn.jpg)
