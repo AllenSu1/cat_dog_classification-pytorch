@@ -119,7 +119,7 @@ optimizer = torch.optim.Adam(params=model.parameters(),
                              lr=learning_rate,
                              weight_decay=weight_decay)
 # 學習率下降
-scheduler = lr_scheduler.StepLR(optimizer, step_size=50, gamma=0.9)
+scheduler = lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.9)
 train_losses, val_losses = [], []
 for epoch in range(1, n_epochs+1):
 
@@ -159,7 +159,7 @@ for epoch in range(1, n_epochs+1):
                     'loss': loss.item(),
                     'lr': optimizer.state_dict()['param_groups'][0]['lr']
                 })
-
+        scheduler.step()
     ######################
     # validate the model #
     ######################

@@ -14,6 +14,7 @@ from plotcm import plot_confusion_matrix
 from sklearn.metrics import confusion_matrix
 from PIL import Image
 import model as res101_frezee
+from tqdm import tqdm
 
 device = torch.device("cuda")
 
@@ -28,16 +29,16 @@ fc_features = model.fc.in_features
 # 將最後輸出類別改為20
 model.fc = nn.Linear(fc_features, 20)
 # 輸入訓練好權重
-model.load_state_dict(torch.load("model/res101_frezee.pth"))
+model.load_state_dict(torch.load("model/res101_unfrezee_StepLR_5_2.pth"))
 
-# 遷移學習 -> frezee
-for name, parameter in model.named_parameters():
-    # print(name)
-    if name == 'layer4.0.conv1.weight':
-        break
-    # if name == 'fc.weight':
-    #     break
-    parameter.requires_grad = False
+# # 遷移學習 -> frezee
+# for name, parameter in model.named_parameters():
+#     # print(name)
+#     if name == 'layer4.0.conv1.weight':
+#         break
+#     # if name == 'fc.weight':
+#     #     break
+#     parameter.requires_grad = False
 
 model.to(device)
 
@@ -66,7 +67,7 @@ total = 0.
 model.eval()
 
 pred_cm = torch.tensor([]).to(device)
-for batch_idx, (data, target) in enumerate(test_loader):
+for (data, target) in tqdm((test_loader)):
     # move to GPU
     data, target = data.to(device), target.to(device)
     # forward pass: compute predicted outputs by passing inputs to the model
@@ -91,6 +92,7 @@ print('Test Accuracy: ', (correct / total))
 cm = confusion_matrix(torch.tensor(test_data.targets), pred_cm.cpu())
 print(type(cm))
 
+classes = os.listdir(r'D:\Dataset\simpson\preprocessing\test\train')
 # classes = ('abraham_grampa_simpson',
 #            'apu_nahasapeemapetilon',
 #            'bart_simpson',

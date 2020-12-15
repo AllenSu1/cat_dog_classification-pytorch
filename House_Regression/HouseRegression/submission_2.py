@@ -60,8 +60,11 @@ model.add(Dense(units=52,input_dim=x_train.shape[1], kernel_initializer='random_
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
+model.add((Dropout(0.5)))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
+model.add((Dropout(0.5)))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
+model.add((Dropout(0.5)))
 # model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
 # model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
@@ -74,7 +77,7 @@ model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu')
 model.add((Dropout(0.5)))
 model.add(Dense(units=256, kernel_initializer='random_normal',activation='relu'))
 model.add((Dropout(0.5)))
-model.add(Dense(units=16, kernel_initializer='random_normal',activation='relu'))
+model.add(Dense(units=52, kernel_initializer='random_normal',activation='relu'))
 #==============================================================================
 # model.add(Dense(units=128, kernel_initializer='normal',activation='relu'))
 # model.add(Dense(units=128, kernel_initializer='normal',activation='relu'))
@@ -104,11 +107,11 @@ model.compile(loss='MAE',optimizer='Adam')
 
 checkpoint = ModelCheckpoint('weight/ep{epoch:03d}-loss{loss:03f}-val_loss{val_loss:.3f}.h5', monitor='val_loss',verbose=1, save_best_only=True)
 
-train_history = model.fit(x=X_train,y=y_train,validation_data=(X_valid,y_valid),epochs=1000,batch_size=8192,callbacks=[checkpoint])
+train_history = model.fit(x=X_train,y=y_train,validation_data=(X_valid,y_valid),epochs=200,batch_size=4096,callbacks=[checkpoint])
 
 Y_predict = model.predict(X_test)
 
-np.savetxt('csv/test.csv',Y_predict,delimiter=',')
+np.savetxt('test.csv',Y_predict,delimiter=',')
 #output = np.column_stack((test_id, Y_predict))
 #np.savetxt('test200.csv', output, delimiter=',', header='id,price', comments='')
 
@@ -121,7 +124,7 @@ def show_train_history(train_history, train, validation):
     plt.ylabel('loss')
     plt.xlabel('Epoch')
     plt.legend(['train', 'validation'], loc='upper left')
-    plt.savefig('image/loss.png')
+    plt.savefig('loss.png')
     plt.show()
     
 show_train_history(train_history, 'loss', 'val_loss')

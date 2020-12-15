@@ -30,16 +30,16 @@ fc_features = model.fc.in_features
 # 將最後輸出類別改為20
 model.fc = nn.Linear(fc_features, 20)
 # 輸入訓練好權重
-model.load_state_dict(torch.load("model/res101_frezee.pth"))
+model.load_state_dict(torch.load("model/res101_unfrezee_StepLR_5_2.pth"))
 
-# 遷移學習 -> frezee
-for name, parameter in model.named_parameters():
-    # print(name)
-    if name == 'layer4.0.conv1.weight':
-        break
-    # if name == 'fc.weight':
-    #     break
-    parameter.requires_grad = False
+# # 遷移學習 -> frezee
+# for name, parameter in model.named_parameters():
+#     # print(name)
+#     if name == 'layer4.0.conv1.weight':
+#         break
+#     # if name == 'fc.weight':
+#     #     break
+#     parameter.requires_grad = False
 
 model.to(device)
 model.eval()
@@ -59,4 +59,4 @@ sample = pd.DataFrame({
     'character': result[:]
 })
 
-sample.to_csv('submission/sample.csv', index=False)
+sample.to_csv('submission/res101_unfrezee_StepLR_5_2.csv', index=False)
