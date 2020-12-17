@@ -8,7 +8,6 @@
 ##	說明
 1. ##### 友情贊助dataset_partition @[Chen-Yen Chang BlackyYen](https://github.com/BlackyYen)
 2. ##### 頭貼鎮壓 @[Chen-Yen Chang BlackyYen](https://www.facebook.com/photo.php?fbid=857627608100415&set=a.111229042740279&type=3)
-![大神坐正](https://www.facebook.com/photo.php?fbid=857627608100415&set=a.111229042740279&type=3)
 
 深度學習模型的建立和訓練，選擇框架與進行資料預處理，設定模型訓練前須選擇深度學習框架，此分類採用的第三方框架是Pytorch之核心庫支援，為跨平台的高級神經網路API深度神經網路，且非獨立的機器學習框架提供了更進階、更直觀的抽象集。此專案採用監督式學習，需要對訓練資料進行標記，為了確保訓練時模營不會產生過度擬合的情況，需要海量的資料，進行資料預處理，透過Data augmentation的資料擴增方法，藉由資料增強技術將20類人物各收集3000張圖像，總計60000張的資料集，其中訓練集、驗證集、測試集各占資料集的70%、15%、15%。
 ##	模型訓練流程圖
