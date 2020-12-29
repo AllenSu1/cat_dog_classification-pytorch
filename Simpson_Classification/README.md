@@ -6,7 +6,7 @@
 4.  [Loss分析改進](#Loss分析與改進)
 5.  [結果](#測試結果)
 ##	說明
-1. ##### 範例參考reference example @[LiDo @lido2370 PyTorch - 練習kaggle - Dogs vs. Cats - 使用自定義的 CNN model](https://hackmd.io/@lido2370/S1aX6e1nN?type=view))
+1. ##### 範例參考reference example @[LiDo @lido2370 PyTorch - 練習kaggle - Dogs vs. Cats - 使用自定義的 CNN model](https://hackmd.io/@lido2370/S1aX6e1nN?type=view)
 2. ##### 友情贊助dataset_partition @[Chen-Yen Chang BlackyYen](https://github.com/BlackyYen)
 3. ##### 頭貼鎮壓 @[Chen-Yen Chang BlackyYen](https://www.facebook.com/photo.php?fbid=857627608100415&set=a.111229042740279&type=3)
 
