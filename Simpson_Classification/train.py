@@ -20,8 +20,8 @@ if not train_on_gpu:
 else:
     print('CUDA is available!  Training on GPU ...')
 
-PATH_train = "D:/Dataset/simpson/preprocessing/test/train"
-PATH_val = "D:/Dataset/simpson/preprocessing/test/val"
+PATH_train = "D:/Dataset/simpson/preprocessing/train"
+PATH_val = "D:/Dataset/simpson/preprocessing/val"
 # PATH_test="D:/Dataset/simpson/preprocessing/test/test"
 
 TRAIN = Path(PATH_train)
