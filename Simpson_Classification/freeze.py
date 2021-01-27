@@ -22,4 +22,3 @@ for name, parameter in model.named_parameters():
 
 # 輸出模型參數
 summary(model.to(device),(3,224,224))
-

@@ -1,36 +1,27 @@
 import torch
-from pathlib import Path
-from torchvision import datasets, models, transforms
+import torchvision
 import numpy as np
+import torch.nn as nn
 import matplotlib.pyplot as plt
-import torch
 from tqdm import tqdm
+from pathlib import Path
 # from model import CNN_Model
 # from ResNet18 import resnet18
-import numpy as np
-from torch.utils.data.sampler import SubsetRandomSampler
-import torch.nn as nn
 from torch.optim import lr_scheduler
-import torchvision
-
+from torchvision import datasets, models, transforms
+from torch.utils.data.sampler import SubsetRandomSampler
 
 train_on_gpu = torch.cuda.is_available()
 if not train_on_gpu:
-    print('CUDA is not available.  Training on CPU ...')
+    print('CUDA不可用，使用CPU訓練')
 else:
-    print('CUDA is available!  Training on GPU ...')
+    print('CUDA可用，使用GPU訓練')
 
 PATH_train = "D:/Dataset/simpson/preprocessing/train"
 PATH_val = "D:/Dataset/simpson/preprocessing/val"
-# PATH_test="D:/Dataset/simpson/preprocessing/test/test"
 
 TRAIN = Path(PATH_train)
 VALID = Path(PATH_val)
-# TEST=Path(PATH_test)
-print(TRAIN)
-print(VALID)
-# print(TEST)
-
 
 # number of subprocesses to use for data loading
 num_workers = 0
@@ -42,7 +33,6 @@ batch_size = 180
 val_batch_size = 100
 
 # convert data to a normalized torch.FloatTensor
-
 train_transforms = transforms.Compose([transforms.Resize((224, 224)),
                                        transforms.ToTensor(),
                                        transforms.Normalize([0.485, 0.456, 0.406],
@@ -53,25 +43,15 @@ valid_transforms = transforms.Compose([transforms.Resize((224, 224)),
                                        transforms.Normalize([0.485, 0.456, 0.406],
                                                             [0.229, 0.224, 0.225])])
 
-# test_transforms = transforms.Compose([transforms.Resize((224,224)),
-#                                       transforms.ToTensor(),
-#                                       transforms.Normalize([0.485, 0.456, 0.406],
-#                                                            [0.229, 0.224, 0.225])])
-
 # choose the training and test datasets
 train_data = datasets.ImageFolder(TRAIN, transform=train_transforms)
 valid_data = datasets.ImageFolder(VALID, transform=valid_transforms)
-# test_data = datasets.ImageFolder(TEST, transform=test_transforms)
-
-# print(train_data.class_to_idx)
-# print(valid_data.class_to_idx)
 
 # prepare data loaders (combine dataset and sampler)
 train_loader = torch.utils.data.DataLoader(
     train_data, batch_size=batch_size, num_workers=num_workers, shuffle=True, drop_last=True)
 valid_loader = torch.utils.data.DataLoader(
     valid_data, batch_size=val_batch_size,  num_workers=num_workers, shuffle=True)
-# test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size,  num_workers=num_workers)
 
 images, labels = next(iter(train_loader))
 images.shape, labels.shape
@@ -127,9 +107,8 @@ for epoch in range(1, n_epochs+1):
     train_loss = 0.0
     valid_loss = 0.0
     print('\nrunning epoch: {}'.format(epoch))
-    ###################
-    # train the model #
-    ###################
+
+    # train the model
     model.train()
     with tqdm(train_loader) as pbar:
         for data, target in train_loader:
@@ -150,7 +129,7 @@ for epoch in range(1, n_epochs+1):
             optimizer.step()
             # update training loss
             train_loss += loss.item()*data.size(0)
-            # 黑式訓練條
+            # 訓練條
             pbar.update(1)
             pbar.set_description('train')
             pbar.set_postfix(
@@ -160,9 +139,8 @@ for epoch in range(1, n_epochs+1):
                     'lr': optimizer.state_dict()['param_groups'][0]['lr']
                 })
         scheduler.step()
-    ######################
-    # validate the model #
-    ######################
+
+    # validate the model
     model.eval()
     val_accuracy = 0
     for data, target in tqdm(valid_loader):

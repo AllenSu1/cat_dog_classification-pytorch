@@ -50,10 +50,9 @@ for i in tqdm(range(1, 991)):
     test_data = Image.open(com_img).convert('RGB')
     data_transforms = test_transforms(test_data).to(device)
     pred = model(data_transforms[None, ...])
-    # print(data_transforms[None, ...].shape)
     predict_y = torch.max(pred, dim=1)[1]
     result.append(classes[int(predict_y)])
-    # print(result)
+# print(result)
 sample = pd.DataFrame({
     'id': pd.read_csv(r'D:\GitHub\t109318121\ML_Classification\sampleSubmission.csv').id,
     'character': result[:]
