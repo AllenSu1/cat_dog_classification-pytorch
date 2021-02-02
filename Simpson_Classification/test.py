@@ -29,7 +29,7 @@ fc_features = model.fc.in_features
 # 將最後輸出類別改為20
 model.fc = nn.Linear(fc_features, 20)
 # 輸入訓練好權重
-model.load_state_dict(torch.load("model/res101_unfrezee_StepLR_5_2.pth"))
+model.load_state_dict(torch.load(r"D:\GitHub\AllenSu1\ML\Simpson_Classification\model\res101_unfrezee_StepLR_5_2.pth"))
 
 # # 遷移學習 -> frezee
 # for name, parameter in model.named_parameters():
@@ -42,7 +42,7 @@ model.load_state_dict(torch.load("model/res101_unfrezee_StepLR_5_2.pth"))
 
 model.to(device)
 
-PATH_test = "D:\\Dataset\\simpson\\preprocessing\\test\\test"
+PATH_test = r"D:\Dataset\simpson\preprocessing\test"
 TEST = Path(PATH_test)
 
 test_transforms = transforms.Compose([transforms.Resize((224, 224)),
@@ -78,14 +78,16 @@ for (data, target) in tqdm((test_loader)):
     pred = output.data.max(1, keepdim=True)[1]
     pred_cm = torch.cat((pred_cm, pred), dim=0)
     # 預測結果與ground truth進行比較
-    correct += np.sum(np.squeeze(pred.eq(target.data.view_as(pred))).cpu().np())
+    
+    correct += np.sum(np.squeeze(pred.eq(target.data.view_as(pred))).cpu().numpy())
+
     total += data.size(0)
 
 print('Test Accuracy: ', (correct / total))
 cm = confusion_matrix(torch.tensor(test_data.targets), pred_cm.cpu())
 print(type(cm))
 
-classes = os.listdir(r'D:\Dataset\simpson\preprocessing\test\train')
+classes = os.listdir(r'D:\Dataset\simpson\preprocessing\train')
 
 # 繪製混淆矩陣
 plt.figure(figsize=(20, 20))

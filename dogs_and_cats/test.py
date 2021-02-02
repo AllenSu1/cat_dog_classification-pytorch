@@ -17,7 +17,7 @@ batch_size = 16
 num_workers = 0
 
 model = torchvision.models.resnet101(pretrained=True, progress=True)
-model.load_state_dict(torch.load("model/resnet101.pth"))
+model.load_state_dict(torch.load(r"D:\GitHub\AllenSu1\ML\dogs_and_cats\model\resnet101.pth"))
 model.to(device)
 
 PATH_test="D:\\Dataset\\dogs_and_cats\\z_test\\test_1"
