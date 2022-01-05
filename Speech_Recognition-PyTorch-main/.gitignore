@@ -1,0 +1,7 @@
+.vscode
+__pycache__
+dataset
+logs
+data
+reference
+weights
