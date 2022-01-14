@@ -6,7 +6,7 @@ cat_dog_classification-pytorch
 3.  [Loss分析改進](#Loss分析與改進)
 4.  [結果](#測試結果)
 ##	說明
-1. ##### 範例參考reference example @[LiDo @lido2370 PyTorch - 練習kaggle - Dogs vs. Cats - 使用自定義的 CNN model](https://hackmd.io/@lido2370/S1aX6e1nN?type=view)
+##### 範例參考reference example @[LiDo @lido2370 PyTorch - 練習kaggle - Dogs vs. Cats - 使用自定義的 CNN model](https://hackmd.io/@lido2370/S1aX6e1nN?type=view)
 ##	訓練驗證設計
 ####    ResNet18
 ResNet18超參數設計：設計learning_rate = 0.00001，EPOCH = 10，batch_size = 16，val_batch_size = 8。
