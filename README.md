@@ -1,2 +1,2 @@
 # 貓狗分類
-cat_dog_classification-pytorch1
+cat_dog_classification-pytorch
