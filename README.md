@@ -17,6 +17,6 @@ ResNet18超參數設計：設計learning_rate = 0.00001，EPOCH = 10，batch_siz
 ResNet18分類結果
 以每類500張圖像，共1000張圖像計行測試，其ResNet18測試結果以混淆矩陣呈現如下，其測試準確率達99%。
 
-![ResNet18測試之混淆矩陣](https://github.com/AllenSu1/cat_dog_classification-pytorch/blob/main/confusion_matrix.jpg)
+![ResNet18測試之混淆矩陣](https://github.com/AllenSu1/cat_dog_classification-pytorch/blob/main/confusion_matrix.png)
 
 
